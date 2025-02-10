@@ -7,19 +7,24 @@ namespace Takowalk
 {
     public class GameSystemUpdater : MonoBehaviour
     {
-        public UnityEvent UpdateEvent { get; private set; } = new();
-        public UnityEvent FixedUpdateEvent { get; private set; } = new();
 
+        private List<GameSystemBase> _updateList = new();
+        private List<GameSystemBase> _fixedUpdateList = new();
 
         private void Update()
         {
-            UpdateEvent.Invoke();
+            foreach (var item in _updateList)
+            {
+                item.OnUpdateGameSystem();
+            }
         }
 
         private void FixedUpdate()
         {
-            FixedUpdateEvent.Invoke();
+            foreach (var item in _fixedUpdateList)
+            {
+                item.OnFixedUpdateGameSystem();
+            }
         }
-
     }
 }

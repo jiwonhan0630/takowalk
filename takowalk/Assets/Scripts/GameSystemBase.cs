@@ -23,5 +23,15 @@ namespace Takowalk
             IsLoaded = true;
             return UniTask.CompletedTask;
         }
+
+        public virtual void OnUpdateGameSystem()
+        {
+
+        }
+
+        public virtual void OnFixedUpdateGameSystem()
+        {
+
+        }
     }
 }
