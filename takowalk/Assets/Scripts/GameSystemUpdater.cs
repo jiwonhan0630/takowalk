@@ -7,7 +7,6 @@ namespace Takowalk
 {
     public class GameSystemUpdater : MonoBehaviour
     {
-
         private List<GameSystemBase> _updateList = new();
         private List<GameSystemBase> _fixedUpdateList = new();
 

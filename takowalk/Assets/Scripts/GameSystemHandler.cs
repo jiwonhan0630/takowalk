@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,7 +27,13 @@ namespace Takowalk
 
         private void Start()
         {
+            LoadEndEvent.AddListener(OnLoadEnd);
             LoadAsync().Forget();
+        }
+
+        private void OnLoadEnd()
+        {
+            Updater.gameObject.SetActive(true);
         }
 
         protected override async UniTask LoadAsyncInternal()
