@@ -8,6 +8,20 @@ namespace Takowalk
 {
     public class GameSystemHandler : GameSystemBase
     {
+        public static GameSystemHandler Instance;
+
+        public GameSystemUpdater Updater;
+
+        private void Awake()
+        {
+            if (Instance != null)
+            {
+                Destroy(Instance.gameObject);
+            }
+            
+            Instance = this;
+        }
+
         public List<GameSystemBase> GameSystemList;
 
         private void Start()
