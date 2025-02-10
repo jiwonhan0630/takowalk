@@ -19,13 +19,14 @@ namespace Takowalk
         {
             foreach (var item in GameSystemList)
             {
-                if(item.IsLoaded)
+                if (item.IsLoaded)
                 {
                     continue;
                 }
 
                 await item.LoadAsync();
             }
+            IsLoaded = true;
         }
     }
 }

@@ -20,6 +20,7 @@ namespace Takowalk
 
         protected virtual UniTask LoadAsyncInternal()
         {
+            IsLoaded = true;
             return UniTask.CompletedTask;
         }
     }
