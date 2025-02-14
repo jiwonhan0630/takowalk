@@ -15,7 +15,6 @@ namespace Takowalk
         {
             Controls = new();
             GameSystemHandler.GameSystemLoadEndEvent.AddListener(OnGameSystemLoadEnd);
-
             return UniTask.CompletedTask;
         }
 
