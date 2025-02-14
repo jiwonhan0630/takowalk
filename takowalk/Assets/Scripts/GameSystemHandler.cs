@@ -10,8 +10,11 @@ namespace Takowalk
     public class GameSystemHandler : GameSystemBase
     {
         public static GameSystemHandler Instance { get; private set; }
+        public static GameSystemUpdater Updater => Instance._updater;
 
-        public GameSystemUpdater updater;
+        private GameSystemUpdater _updater;
+
+        public List<GameSystemBase> gameSystemList;
 
         private void Awake()
         {
@@ -19,11 +22,20 @@ namespace Takowalk
             {
                 Destroy(Instance.gameObject);
             }
-            
+
             Instance = this;
+            CreateUpdater();
         }
 
-        public List<GameSystemBase> gameSystemList;
+        private void CreateUpdater()
+        {
+            GameObject updaterObject = new GameObject(nameof(GameSystemUpdater));
+            updaterObject.SetActive(false);
+            updaterObject.transform.parent = transform;
+
+            _updater = updaterObject.AddComponent<GameSystemUpdater>();
+        }
+
 
         private void Start()
         {
@@ -33,7 +45,7 @@ namespace Takowalk
 
         private void OnLoadEnd()
         {
-            updater.gameObject.SetActive(true);
+            _updater.gameObject.SetActive(true);
         }
 
         protected override async UniTask LoadAsyncInternal()
