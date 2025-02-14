@@ -9,19 +9,23 @@ namespace Takowalk
 {
     public class TestInputManager : GameSystemBase
     {
-        private TestControls _controls;
+        public TestControls Controls { get; private set; }
 
         protected override UniTask LoadAsyncInternal()
         {
-            _controls = new();
+            Controls = new();
+            GameSystemHandler.GameSystemLoadEndEvent.AddListener(OnGameSystemLoadEnd);
 
-            _controls.Tako.Move.performed += OnTakoMovePerformed;
             return UniTask.CompletedTask;
         }
 
-        private void OnTakoMovePerformed(InputAction.CallbackContext context)
+        private void OnGameSystemLoadEnd()
         {
-
+            Controls?.Enable();
+        }
+        private void OnDisable()
+        {
+            Controls?.Disable();
         }
     }
 }
