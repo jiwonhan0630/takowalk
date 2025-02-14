@@ -9,9 +9,9 @@ namespace Takowalk
 {
     public class GameSystemHandler : GameSystemBase
     {
-        public static GameSystemHandler Instance;
+        public static GameSystemHandler Instance { get; private set; }
 
-        public GameSystemUpdater Updater;
+        public GameSystemUpdater updater;
 
         private void Awake()
         {
@@ -23,7 +23,7 @@ namespace Takowalk
             Instance = this;
         }
 
-        public List<GameSystemBase> GameSystemList;
+        public List<GameSystemBase> gameSystemList;
 
         private void Start()
         {
@@ -33,12 +33,12 @@ namespace Takowalk
 
         private void OnLoadEnd()
         {
-            Updater.gameObject.SetActive(true);
+            updater.gameObject.SetActive(true);
         }
 
         protected override async UniTask LoadAsyncInternal()
         {
-            foreach (var item in GameSystemList)
+            foreach (var item in gameSystemList)
             {
                 if (item.IsLoaded)
                 {
