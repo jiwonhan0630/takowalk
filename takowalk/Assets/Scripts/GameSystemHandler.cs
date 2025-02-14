@@ -11,6 +11,7 @@ namespace Takowalk
     {
         public static GameSystemHandler Instance { get; private set; }
         public static GameSystemUpdater Updater => Instance._updater;
+        public static UnityEvent GameSystemLoadEndEvent => Instance.LoadEndEvent;
 
         private GameSystemUpdater _updater;
 
